@@ -73,12 +73,13 @@ start_nginx() {
         -e "s:\${V2RAY_PORT}:${V2RAY_PORT}:" \
         -e "s:\${V2RAY_WS_PATH}:${V2RAY_WS_PATH}:" \
         -e "s:\${SITE_DOMAIN}:${SITE_DOMAIN}:" \
+        -e "s:\${SSL_PORT}:${SSL_PORT}:" \
         -e "s:\${CERTIFICATE_FILE}:${CERTIFICATE_FILE}:" \
         -e "s:\${CERTIFICATE_KEY_FILE}:${CERTIFICATE_KEY_FILE}:" \
         -e "s:\${DHPARAM_FILE}:${DHPARAM_FILE}:" \
         /conf/nginx/nginx.conf >${NGINX_CONF}
 
-    echo "starting nginx at port 80(http)&443(https)"
+    echo "starting nginx at port ${SSL_PORT}(https)"
     mkdir -p /run/nginx
     nginx && echo "nginx started"
 }
