@@ -19,7 +19,8 @@ echo "SITE DOMAIN          : ${SITE_DOMAIN}"
 echo "V2RAY TOKEN          : ${V2RAY_TOKEN}"
 echo "V2RAY WS PATH        : ${V2RAY_WS_PATH}"
 echo "V2RAY_PORT           : ${V2RAY_PORT}"
-echo "SSL_PORT             : ${SSL_PORT}"
+echo "SSL_PORT_START       : ${SSL_PORT_START}"
+echo "SSL_PORT_END         : ${SSL_PORT_END}"
 
 DATA_DIR="/data"
 
@@ -73,13 +74,14 @@ start_nginx() {
         -e "s:\${V2RAY_PORT}:${V2RAY_PORT}:" \
         -e "s:\${V2RAY_WS_PATH}:${V2RAY_WS_PATH}:" \
         -e "s:\${SITE_DOMAIN}:${SITE_DOMAIN}:" \
-        -e "s:\${SSL_PORT}:${SSL_PORT}:" \
+        -e "s:\${SSL_PORT_START}:${SSL_PORT_START}:" \
+        -e "s:\${SSL_PORT_END}:${SSL_PORT_END}:" \
         -e "s:\${CERTIFICATE_FILE}:${CERTIFICATE_FILE}:" \
         -e "s:\${CERTIFICATE_KEY_FILE}:${CERTIFICATE_KEY_FILE}:" \
         -e "s:\${DHPARAM_FILE}:${DHPARAM_FILE}:" \
         /conf/nginx/nginx.conf >${NGINX_CONF}
 
-    echo "starting nginx at port ${SSL_PORT}(https)"
+    echo "starting nginx at port ${SSL_PORT_START}(https)"
     mkdir -p /run/nginx
     nginx && echo "nginx started"
 }
