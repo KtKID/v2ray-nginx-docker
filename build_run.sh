@@ -10,9 +10,9 @@ else
 
     docker build -t docker-nginx-v2ray .
 
-    SITE_DOMAIN="kingkid.fun" #你的域名
-    SSL_PORT_START=50000    #start-end受限于nginx最大连接数量
-    SSL_PORT_END=50010
+    SITE_DOMAIN="domain" #你的域名
+    SSL_PORT_START=10000    #start-end受限于nginx最大连接数量
+    SSL_PORT_END=10010
     V2RAY_PORT=54321
 
     port_flags=""
@@ -29,7 +29,7 @@ else
         -p ${V2RAY_PORT}:${V2RAY_PORT} \
         -v "/etc/letsencrypt/archive/${SITE_DOMAIN}":/data/cert/${SITE_DOMAIN} \
         -e SITE_DOMAIN="${SITE_DOMAIN}" \
-        -e V2RAY_TOKEN="981e3a35-ee2c-4b78-874b-ec8acf87edc2" \
+        -e V2RAY_TOKEN="0000000-0000-0000-000-000000" \
         -e V2RAY_PORT=${V2RAY_PORT} \
         -e SSL_PORT_START=${SSL_PORT_START} \
         -e SSL_PORT_END=${SSL_PORT_END} \
