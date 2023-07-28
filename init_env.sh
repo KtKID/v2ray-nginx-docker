@@ -21,6 +21,9 @@ echo \
 	  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
 	    "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
 	      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+echo "update docker gpt..."
+sudo apt update -y
+sudo apt upgrade -y
 echo "install docker Engine..."
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 echo "[docker install finished!!!]"
